@@ -21,7 +21,9 @@ export default class Queue {
    */
 
   enqueue(value) {
-    // your code is here
+    this.length += 1;
+    
+    return this.list.push(value);
   }
 
   /**
@@ -30,7 +32,9 @@ export default class Queue {
    */
 
   dequeue() {
-    // your code is here
+    this.length -= 1;
+
+    return this.list.shift();
   }
 
   /**
@@ -39,6 +43,6 @@ export default class Queue {
    */
 
   peek() {
-    // your code is here
+    return this.list[0];
   }
 }
