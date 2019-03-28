@@ -20,13 +20,7 @@ export default class HashTable {
    */
 
   hashKey(key) {
-    for (var i = 0; i < this.memory.length; i++) {
-      if (this.memory[i].key === key) {
-          return i;
-      }
-    }
-    
-    return -1;
+    return key.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);  
   }
 
   /**
@@ -34,7 +28,7 @@ export default class HashTable {
    */
 
   get(key) {
-    if (this.hashKey(key) > -1) {
+    if (this.memory[this.hashKey(key)] !== undefined) {
       return this.memory[this.hashKey(key)].value;
     }
   }
@@ -44,11 +38,7 @@ export default class HashTable {
    */
 
   set(key, value) {
-    if (this.hashKey(key) !== -1) {
-      return this.get(key);
-    }
-
-    return this.memory.push({'key': key, 'value': value});
+    return this.memory[this.hashKey(key)] = {'key': key, 'value': value};
   }
 
   /**
