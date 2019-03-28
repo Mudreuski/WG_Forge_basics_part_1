@@ -20,7 +20,13 @@ export default class HashTable {
    */
 
   hashKey(key) {
-    // your code is here
+    for (var i = 0; i < this.memory.length; i++) {
+      if (this.memory[i].key === key) {
+          return i;
+      }
+    }
+    
+    return -1;
   }
 
   /**
@@ -28,7 +34,9 @@ export default class HashTable {
    */
 
   get(key) {
-    // your code here
+    if (this.hashKey(key) > -1) {
+      return this.memory[this.hashKey(key)].value;
+    }
   }
 
   /**
@@ -36,7 +44,11 @@ export default class HashTable {
    */
 
   set(key, value) {
-    // your code is here
+    if (this.hashKey(key) !== -1) {
+      return this.get(key);
+    }
+
+    return this.memory.push({'key': key, 'value': value});
   }
 
   /**
@@ -45,6 +57,6 @@ export default class HashTable {
    */
 
   remove(key) {
-    // your code is here
+    return this.memory.splice(this.hashKey(key), 1);
   }
 }
