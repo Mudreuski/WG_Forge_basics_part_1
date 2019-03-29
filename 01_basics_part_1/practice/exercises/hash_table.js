@@ -46,7 +46,7 @@ export default class HashTable {
    * Принимает ключ.
    */
 
-  remove(key) {
-    return this.memory.splice(this.hashKey(key), 1);
+  remove(key) {    
+    return delete this.memory[this.hashKey(key)];
   }
 }
